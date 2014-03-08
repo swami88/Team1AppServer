@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/jackson-core-asl-1.9.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/jackson-mapper-asl-1.9.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/jstl-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/junit-4.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/org.springframework.expression-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/org.springframework.expression-sources-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-aop-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-context-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-oxm-3.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-tx-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-web-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/spring-webmvc-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Swaminathan/Downloads/spring_jars/standard-1.1.2.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>
