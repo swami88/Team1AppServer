@@ -11,7 +11,9 @@ public class RemoteRequestModel {
 	private String requestorEmail;
 	private boolean approved;
 
-	
+	public RemoteRequestModel(){
+		
+	}
 	
 	public RemoteRequestModel(String ownerEmail, String requestorEmail) {
 		super();

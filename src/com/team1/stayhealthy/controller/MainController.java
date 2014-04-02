@@ -14,7 +14,7 @@ import com.team1.stayhealthy.model.User;
 
  
 @Controller
-@RequestMapping("/getReco")
+@RequestMapping("/getReco/*")
 public class MainController {
  
 	@RequestMapping(value="{name}", method = RequestMethod.GET)
@@ -28,7 +28,7 @@ public class MainController {
  
 	}
 	
-	@RequestMapping(value="/getPermission", method = RequestMethod.POST)
+	@RequestMapping(value="getPermission", method = RequestMethod.POST,headers = {"content-type=application/json"})
 	public @ResponseBody ServerResponseModel getPermission(@RequestBody RemoteRequestModel model){
 		ServerResponseModel srm = new ServerResponseModel();
 		srm.setType(ResponseType.CHECK_REQUEST);
