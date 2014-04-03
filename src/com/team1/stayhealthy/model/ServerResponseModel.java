@@ -16,7 +16,7 @@ public class ServerResponseModel {
 		//input payload: instance of RemoteRequestModel with approved: true
 		//server: find the instance and set approved:true
 		CHECK_REQUEST_STATUS, 
-		//inpult payload: instance of RemoteRequestModel (requestor & owner's email)
+		//input payload: instance of RemoteRequestModel (requestor & owner's email)
 		//server response either true or false for the approval field
 		DOWNLOAD, 
 		//input payload: instance of RemoteRequestModel
