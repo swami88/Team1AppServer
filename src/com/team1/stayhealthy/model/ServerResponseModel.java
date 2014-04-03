@@ -1,5 +1,6 @@
 package com.team1.stayhealthy.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ServerResponseModel {
@@ -16,7 +17,7 @@ public class ServerResponseModel {
 		//input payload: instance of RemoteRequestModel with approved: true
 		//server: find the instance and set approved:true
 		CHECK_REQUEST_STATUS, 
-		//input payload: instance of RemoteRequestModel (requestor & owner's email)
+		//inpult payload: instance of RemoteRequestModel (requestor & owner's email)
 		//server response either true or false for the approval field
 		DOWNLOAD, 
 		//input payload: instance of RemoteRequestModel
@@ -33,10 +34,36 @@ public class ServerResponseModel {
 	private Date timestamp;
 	private ResponseType type;
 	private Boolean successful;
-	private String jsonPayload;
+	private String serverMessage;
+	private ArrayList<RemoteRequestModel> requests;
+	private RemoteDataModel remoteData;
 
 	public Date getTimestamp() {
 		return timestamp;
+	}
+
+	public String getServerMessage() {
+		return serverMessage;
+	}
+
+	public void setServerMessage(String serverMessage) {
+		this.serverMessage = serverMessage;
+	}
+
+	public ArrayList<RemoteRequestModel> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(ArrayList<RemoteRequestModel> requests) {
+		this.requests = requests;
+	}
+
+	public RemoteDataModel getRemoteData() {
+		return remoteData;
+	}
+
+	public void setRemoteData(RemoteDataModel remoteData) {
+		this.remoteData = remoteData;
 	}
 
 	public void setTimestamp(Date timestamp) {
@@ -59,12 +86,6 @@ public class ServerResponseModel {
 		this.successful = successful;
 	}
 
-	public String getJsonPayload() {
-		return jsonPayload;
-	}
 
-	public void setJsonPayload(String jsonPayload) {
-		this.jsonPayload = jsonPayload;
-	}
 
 }
