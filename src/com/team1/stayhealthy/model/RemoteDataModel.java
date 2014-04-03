@@ -2,9 +2,6 @@ package com.team1.stayhealthy.model;
 
 import java.util.ArrayList;
 
-import com.android.entity.AccountModel;
-import com.android.trend.ChartPointModel;
-import com.android.trend.RecordModel;
 /**
  * 
  * @author terry
