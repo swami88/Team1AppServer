@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * 
  * @author terry
  * Example String:
- * {"account":{"weight":"150","username":"username","birthDate":"Aug 22, 1984 12:00:00 AM","password":"password","email":"ben123@gmail.com","name":"Terry Liu","height":"179","insomnia":false,"gender":false,"newUser":false,"cardio":false,"remenber":false,"Hypertension":false,"Diabetes":false},"eventdata":[{"content":"this is history record1","type":"Reminder","timeStamp":"Apr 2, 2014 5:16:56 PM","title":"Reocrd","miss":true}],"healthdata":[{"timestamp":"Apr 2, 2014 4:00:00 PM","isSleep":true,"bpl":73.53523429913682,"hr":79.17601359328428,"bph":103.12648308547405,"sleep":10.0,"act":116.90127646879303},{"timestamp":"Apr 2, 2014 5:00:00 PM","isSleep":true,"bpl":74.69005356685294,"hr":93.9768288749305,"bph":124.20604434234859,"sleep":70.0,"act":75.1365081933751}]}
+ * {"eventdata":[{"content":"this is history record0","type":"Note","timeStamp":"Apr 3, 2014 4:14:51 PM","title":"Reocrd","miss":true}],"healthdata":[{"timestamp":"Apr 3, 2014 3:00:00 PM","isSleep":true,"bpl":44.083248215046595,"hr":112.31969963683281,"bph":72.97899392979157,"sleep":40.0,"act":158.56415899279042},{"timestamp":"Apr 3, 2014 4:00:00 PM","isSleep":true,"bpl":62.83505949207043,"hr":110.37898983798507,"bph":123.99617833111589,"sleep":40.0,"act":59.06571353384917}],"ownerEmail":"terry@gmail.com"}
  */
 
 
