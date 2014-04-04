@@ -1,6 +1,7 @@
 package com.team1.stayhealthy.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,9 @@ import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.gson.Gson;
 
+import com.team1.stayhealthy.model.RemoteDataModel;
 import com.team1.stayhealthy.model.RemoteRequestModel;
 import com.team1.stayhealthy.model.ServerResponseModel;
 import com.team1.stayhealthy.model.ServerResponseModel.ResponseType;
@@ -29,6 +32,7 @@ import com.team1.stayhealthy.model.User;
 public class MainController {
 
 	private static final String REQUEST_TYPE = "Request_type";
+	private static final String DATA_TYPE = "data_type";
 	private static final String Request_prop_owner_email = "owner_prop";
 	private static final String Request_prop_requestor_email = "requestor_prop";
 	private static final String Request_prop_approved = "approved_prop";
@@ -52,10 +56,9 @@ public class MainController {
 	ServerResponseModel getPermission(@RequestBody RemoteRequestModel requestmodel) {
 		ServerResponseModel srm;
 		try {
-			// Key requestKey = KeyFactory.createKey("Request",
-			// requestmodel.getRequestorEmail());
 			String keyValue = requestmodel.getKeyValue();
 			Entity request = new Entity(REQUEST_TYPE, keyValue);
+
 			request.setProperty(Request_prop_requestor_email, requestmodel.getRequestorEmail());
 			request.setProperty(Request_prop_owner_email, requestmodel.getOwnerEmail());
 			request.setProperty(Request_prop_approved, requestmodel.isApproved());
@@ -101,7 +104,7 @@ public class MainController {
 				resultRequest.setApproved((boolean) request.getProperty(Request_prop_approved));
 				results.add(resultRequest);
 			}
-			
+
 		} catch (Exception e) {
 			srm = new ServerResponseModel();
 			srm.setType(ResponseType.CHECK_REQUEST);
@@ -113,11 +116,6 @@ public class MainController {
 		srm.setType(ResponseType.CHECK_REQUEST);
 		srm.setSuccessful(true);
 		srm.setRequests(results);
-
-		// HashMap<String,Object> hm = new HashMap<String,Object>();
-		// hm.put("requests", requests);
-		// hm.put("response", srm);
-		// return hm;
 		return srm;
 
 	}
@@ -144,10 +142,12 @@ public class MainController {
 			srm = new ServerResponseModel();
 			srm.setType(ResponseType.APPROVE_REQUEST);
 			srm.setSuccessful(false);
+			srm.setServerMessage(e.getMessage());
 		}
 		srm = new ServerResponseModel();
 		srm.setType(ResponseType.APPROVE_REQUEST);
 		srm.setSuccessful(true);
+		srm.setServerMessage(requestmodel.getKeyValue());
 		return srm;
 
 	}
@@ -171,6 +171,7 @@ public class MainController {
 			PreparedQuery pq = datastore.prepare(query);
 			requestEntity = pq.asSingleEntity();
 			status = (Boolean) requestEntity.getProperty(Request_prop_approved);
+			requestmodel.setApproved(status);
 
 		} catch (Exception e) {
 			srm = new ServerResponseModel();
@@ -178,13 +179,48 @@ public class MainController {
 			srm.setSuccessful(false);
 			srm.setServerMessage(e.getMessage());
 		}
+		ArrayList<RemoteRequestModel> resultArray= new ArrayList<RemoteRequestModel>();
+		resultArray.add(requestmodel);
 		srm = new ServerResponseModel();
 		srm.setType(ResponseType.CHECK_REQUEST_STATUS);
 		srm.setSuccessful(true);
-		//to be implemented
+		srm.setRequests(resultArray);
+		// to be implemented
 		return srm;
 
 	}
 
+	@RequestMapping(value = "/upload", method = RequestMethod.POST, headers = { "content-type=application/json" })
+	public @ResponseBody
+	String checkRequestStatus(@RequestBody String remoteDataJson) {
+		Gson gson=new Gson();
+		ServerResponseModel srm = new ServerResponseModel();
+		RemoteDataModel data = gson.fromJson(remoteDataJson, RemoteDataModel.class);
+
+		//		ObjectMapper mapper = new ObjectMapper();
+//		
+//		
+//		
+//		
+//		try {
+//			data = mapper.readValue(remoteDataJson, RemoteDataModel.class);
+//		} catch (Exception e) {
+//			data = null;
+//			srm.setSuccessful(false);
+//			srm.setServerMessage(e.getMessage());
+//			return srm;
+//		}
+		if (data!=null){
+			srm.setServerMessage(data.getOwnerEmail());
+			srm.setSuccessful(true);
+			srm.setTimestamp(new Date());
+		}else{
+			srm.setTimestamp(new Date());
+			srm.setSuccessful(false);
+		}
+	
+		
+		return gson.toJson(srm);
+	}
 
 }

@@ -14,6 +14,9 @@ public class ChartPointModel implements Comparable<ChartPointModel>{
 	public static final double SLEEP_MED=40;
 	public static final double SLEEP_HIGH=70;
 	
+	public ChartPointModel(){
+		
+	}
 	
 	
 	public ChartPointModel(Date timestamp, double hr, double bpl, double bph, double act, double sleep, boolean isSleep) {

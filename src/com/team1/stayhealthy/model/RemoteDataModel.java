@@ -11,16 +11,17 @@ import java.util.ArrayList;
 
 
 public class RemoteDataModel {
-	private AccountModel account;
+	private String ownerEmail;
 	private ArrayList<ChartPointModel> healthdata;
 	private ArrayList<RecordModel> eventdata;
 
-	public AccountModel getAccount() {
-		return account;
+
+	public String getOwnerEmail() {
+		return ownerEmail;
 	}
 
-	public void setAccount(AccountModel account) {
-		this.account = account;
+	public void setOwnerEmail(String ownerEmail) {
+		this.ownerEmail = ownerEmail;
 	}
 
 	public ArrayList<ChartPointModel> getHealthdata() {
