@@ -76,9 +76,12 @@ public class MainController {
 			srm.setServerMessage(e.getMessage());
 			return srm;
 		}
+		ArrayList<RemoteRequestModel> requests = new ArrayList<RemoteRequestModel>();
 		srm = new ServerResponseModel();
 		srm.setType(ResponseType.SEND_REQUEST);
 		srm.setSuccessful(true);
+		requests.add(requestmodel);
+		srm.setRequests(requests);
 		return srm;
 
 	}
@@ -102,10 +105,13 @@ public class MainController {
 				RemoteRequestModel resultRequest = new RemoteRequestModel();
 				resultRequest.setOwnerEmail((String) request.getProperty(Request_prop_owner_email));
 				resultRequest.setRequestorEmail((String) request.getProperty(Request_prop_requestor_email));
-				resultRequest.setOwnerName((String) request.getProperty(Request_prop_owner_name));
+				resultRequest.setOwnerName(requestmodel.getOwnerName());
 				resultRequest.setRequestorName((String) request.getProperty(Request_prop_requestor_name));
 				resultRequest.setApproved((boolean) request.getProperty(Request_prop_approved));
 				results.add(resultRequest);
+				// set owner name
+				request.setProperty(Request_prop_owner_name, requestmodel.getOwnerName());
+				datastore.put(request);
 			}
 
 		} catch (Exception e) {
@@ -147,9 +153,12 @@ public class MainController {
 			srm.setSuccessful(false);
 			srm.setServerMessage(e.getMessage());
 		}
+		ArrayList<RemoteRequestModel> requests = new ArrayList<RemoteRequestModel>();
 		srm = new ServerResponseModel();
 		srm.setType(ResponseType.APPROVE_REQUEST);
 		srm.setSuccessful(true);
+		requests.add(requestmodel);
+		srm.setRequests(requests);
 		srm.setServerMessage(requestmodel.getKeyValue());
 		return srm;
 
@@ -249,14 +258,13 @@ public class MainController {
 		if (status) {
 			// retrieve data
 			Query query = new Query(DATA_TYPE);
-			Filter fp = new FilterPredicate(Data_owner, FilterOperator.EQUAL,
-					requestmodel.getOwnerEmail());
+			Filter fp = new FilterPredicate(Data_owner, FilterOperator.EQUAL, requestmodel.getOwnerEmail());
 			query.setFilter(fp);
 			PreparedQuery pq = datastore.prepare(query);
 			Entity dataEntity = pq.asSingleEntity();
 			Text dataBodyText = (Text) dataEntity.getProperty(Data_prop);
-			 String dataJson = dataBodyText.getValue();
-			 //set response
+			String dataJson = dataBodyText.getValue();
+			// set response
 			srm.setSuccessful(true);
 			srm.setRemoteData(gson.fromJson(dataJson, RemoteDataModel.class));
 
